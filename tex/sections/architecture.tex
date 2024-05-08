@@ -1,0 +1,26 @@
+\section{Architecture}
+\subsection{Overall Architecture}
+\begin{itemize}
+    \item The overall architecture ($D_{inputs}$ , $D_{slots}$ , MLP architectures) is inspired by the \verb|SAVi| model in the \textbf{SlotFormer} paper \cite{slot_former}. 
+    \begin{align*}
+    &N = 128 * 128\\
+    &D_{inputs} = 128\\
+    &D_{slots} = 128
+    \end{align*}
+
+    
+    \item $K$ will be the $7$ for \verb|CLEVRTex6| and $11$ for \verb|CLEVRTex11|. 
+    
+    \item The encoder similar to \verb|ResNet18| and described later. 
+
+    \item \verb|Slots| are initialized as $K$ learnable vectors of size $D_{slots}$. The problem with this, instead of learning the \verb|mean| and \verb|variance| of a Gaussian is that, we can't change the number of \verb|slots| during inference time. 
+\end{itemize}
+
+\subsection{Encoder Architecture}
+\begin{itemize}
+    \item Authors in the \textbf{Slot Attention} paper \cite{slot_attention} have used a $4$ layer deep \verb|CNN| encoder, however data in this paper, was \verb|CLEVR6| which is much simpler than \verb|CLEVRTex6|. We tried this encoding scheme but found that the below described \verb|ResNet18| architecture does much better.
+
+    \item \verb|kernel_size = 5| for all \verb|Convolution layers| and \verb|stride = 1|. The input image of $128 \times 128$ has the same \verb|height| and \verb|width| throughout the \verb|CNN| encoder, we only increase the number of \verb|channels|.
+
+    \item A single \verb|Convolution| layers increases the number of \verb|channels| from $3$ to $16$, then over the $6$ blocks, the number of \verb|channels| are increased to $32$ and then to $64$. The feedforward, then increases it to $128$ before it's passed into the \verb|SlotAttention| module.
+\end{itemize}

@@ -1,0 +1,48 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{graphicx} 
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{biblatex}
+\usepackage{subfigure}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2.5cm]{geometry}
+\hypersetup{
+    colorlinks,
+    linkcolor={red},
+    citecolor={blue!50!black},
+    urlcolor={red}
+}
+
+
+
+\author{
+  Harshit  Goyal \\
+  \texttt{2021MT10143}
+}
+\title{COL775: Slot Attention}
+\addbibresource{sections/references.bib}
+\nocite{*}
+\begin{document}
+\maketitle
+
+\section{Part 1}
+\input{sections/processing}
+\input{sections/architecture}
+\input{sections/optimizer}
+\input{sections/metrics}
+\input{sections/slot_composition}
+
+
+
+\printbibliography[title={References}]
+\end{document}

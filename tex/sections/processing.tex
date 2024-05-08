@@ -1,0 +1,46 @@
+\section{Image Preprocessing}
+
+\subsection{Image}
+\begin{itemize}
+    \item The \href{https://www.robots.ox.ac.uk/~vgg/data/clevrtex/}{CLEVRTex} dataset has \verb|RGB| $320 \times 240$ pixel images with an \verb|Alpha channe|. We transform the images, as done in the \textbf{Slot Attention} paper \cite{slot_attention}, below described.
+    \item  We use \verb|PIL.Image| to convert them to \verb|RGB|. Then take the \verb|Center Crop| of size $192 \times 192$.
+
+    \item  This image is then resized using \verb|torchvision.transforms.Resize| with \verb|interpolation| method \verb|InterpolationMode.BILINEAR|
+
+    \item The images are normalized using mean $0.5$ and standard deviation $0.5$ for each channel, independently.
+
+\end{itemize}
+
+
+\subsection{Masks}
+\begin{itemize}
+    \item The processing is same as that mentioned above, except here, the\verb|Resize| operation uses \verb|InterpolationMode.NEAREST|.
+    
+    \item For the \verb|ARI| (Adjusted Rand Index) score calculation, we'll need to \verb|cluster| the image \verb|pixels| ($128 \times 128$) into different objects in the picture (and the background), for this the \verb|masks| are used to produce the \verb|ground truth|.
+    \item \verb|InterpolationMode.NEAREST| preserves the number of distinct \verb|RGB| values in the input, hence it is used.
+\end{itemize}
+
+
+\subsection{About the data}
+\begin{itemize}
+    \item In the given data, each image has atmost $10$ objects (foreground) + $1$ background. This data will be called 
+    \verb|CLEVRTex10|. 
+    \item To experiment with more training schemes, encoder architectures and \verb|slot| initialization method, we first filtered \verb|CLEVRTex11| to \verb|CLEVRTex6| i.e. having atmost $6$ objects (foreground) + $1$ background.
+    \item The filtering described above is dome by counting the number of distinct \verb|RGB| values in in the $320 \times 240$ pixels in the \verb|train masks|.
+\end{itemize}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Dataset Sizes}
+    \label{tab:dataset_sizes}
+    \begin{tabular}{lcc}
+        \toprule
+        Dataset & Train size & Val Size \\
+        \midrule
+        \verb|CLEVRTex11| & $40000$ & $10000$ \\
+        \verb|CLEVRTex6| & $21361$ & $5319$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+

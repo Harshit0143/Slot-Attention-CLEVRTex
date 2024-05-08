@@ -1,0 +1,24 @@
+\section{Metrics}
+Metrics are shown in \autoref{tab:part1_metrics}. The
+maximum ARI on CLEVRTex6 (and CLEVRTex10 too) was $93.898$\%. The Top $5$ outputs, (by ARI score) are shown in \autoref{fig:part1_images}. 
+\begin{figure}[hbt!]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/result_images.png} 
+  \caption{True Mask | Predicted Mask | True Image | Reconstructed Image}
+  \label{fig:part1_images}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Dataset & ARI (\%) & FID \\
+\midrule
+CLEVRTex6 &56.269&  143.379\\
+CLEVRTex11 &55.447 & 161.366\\
+\bottomrule
+\end{tabular}
+\caption{Metrics on Slot Attention model}
+\label{tab:part1_metrics}
+\end{table}
+
