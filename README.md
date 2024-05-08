@@ -1,16 +1,16 @@
-# Slot-Attention-on-CLEVRTex-dataset
+# Slot Attention on CLEVRTex dataset
 
 # Reconstructions 
 
-<center>
+<p align="center">
 <img src="output-images/reconstructions_combined.png" alt="reconstructed images">
-</center>
+</p>
+
 
 # Slot Mixing
 <p align="center">
 <img src="output-images/slot-mixing-output/mixed_1.png" alt="mixing 1">
 <img src="output-images/slot-mixing-output/mixed_2.png" alt="mixing 2">
-
 </p>
 
 # Generated Images
